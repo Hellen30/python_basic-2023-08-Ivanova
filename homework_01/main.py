@@ -2,8 +2,6 @@
 Домашнее задание №1
 Функции и структуры данных
 """
-
-
 def power_numbers(*numbers):
 
     """
@@ -17,13 +15,19 @@ def power_numbers(*numbers):
 
 power_numbers()
 
-
-
 # filter types
 ODD = "odd"
 EVEN = "even"
 PRIME = "prime"
 
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+        else:
+            return True
 
 def filter_numbers(number_list, filter_type):
     """
@@ -35,6 +39,8 @@ def filter_numbers(number_list, filter_type):
     <<< [1, 3]
     >>> filter_numbers([2, 3, 4, 5], EVEN)
     <<< [2, 4]
+    >>> filter_numbers([1, 2, 3, 4, 5, 6, 7, 8, 11], PRIME)
+    <<< [2, 3, 5, 7, 11]
     """
     if filter_type == ODD:
         return [number for number in number_list if number % 2 != 0]
@@ -43,10 +49,8 @@ def filter_numbers(number_list, filter_type):
         return [number for number in number_list if number % 2 == 0]
 
     if filter_type == PRIME:
-        i = 1
-        for number in number_list:
-            if number % i == 0:
-                i += 1
-                break
-            else:
-                return [number]
+        return list(filter(is_prime, number_list))
+
+
+
+
